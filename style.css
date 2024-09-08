@@ -289,8 +289,8 @@ html {
 
 /* Contact Me section */
 .contact {
-    min-height: 50vh;
-    padding: 5rem 9%;
+    min-height: 10vh;
+    padding: 2rem 9%;
     background-color: #0a0a0a;
     color: white;
     text-align: center;
@@ -396,4 +396,133 @@ html {
 
 .project-reverse {
     flex-direction: row-reverse; /* Swap image and text positions */
+}
+
+.project-item.reverse {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    padding: 20px;
+    gap: 20px; /* Adjust the gap between left and right sections */
+}
+
+/* Left half adjustments */
+.project-item.reverse > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally */
+    width: 50%; /* Make the left section larger */
+    text-align: center; /* Center the text */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
+}
+
+/* Increase font size for better visibility */
+.project-item.reverse h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.project-item.reverse p {
+    font-size: 1.2rem;
+}
+
+.social-icons a {
+    font-size: 2rem; /* Increase LinkedIn icon size */
+}
+
+.contact-left {
+    flex: 1;
+    padding: 20px;
+}
+
+.contact-left h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-left p {
+    margin: 5px 0;
+}
+
+.contact-right {
+    flex: 1;
+    padding: 20px;
+}
+
+.contact-right form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-right form label {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.contact-right form input,
+.contact-right form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.contact-right form button {
+    background-color: #4b7ab7;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contact-right form button:hover {
+    background-color: #4b7ab7;
+}
+
+#notification-bar {
+    position: fixed;
+    top: -100px; /* Hidden initially */
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: #4b7ab7; /* Matches your theme */
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    transition: top 0.5s ease-in-out; /* Slide-in effect */
+}
+
+/* For error notifications */
+#notification-bar.error {
+    background-color: #ff4d4d; /* Red for errors */
+}
+
+/* Showing the notification bar */
+#notification-bar.show {
+    top: 0; /* Slide down */
+}
+
+#footer.contact {
+    display: flex;
+    justify-content: center; /* Center the icons */
+    align-items: center;
+    gap: 20px; /* Add space between the icons */
+}
+
+#footer .contact i {
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+#footer .contact i {
+    font-size: 48px;
 }
