@@ -2,10 +2,20 @@
 <html lang="en">
     
 <head>
+    <!--    EmailJS    -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("V4eIzzoET3bBZN5a8");
+        })();
+    </script>
+    <!--   =====================================================================================================    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <div id="notification-bar"></div>
     <title>Mostafa's Portfolio</title>
 </head>
 <body>
@@ -75,14 +85,100 @@
     </div>
 </section>
 
-    <!-- Contact Me Section -->
-    <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:mostafabusiness61104@gmail.com">mostafabusiness61104@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/mostafaahmedma" target="_blank">linkedin.com/in/mostafaahmedma</a></p>
+    <!-- Contact Section -->
+<section class="projects" id="contact">
+    <h2 class="section-title">Contact</h2>
+
+    <!-- Contact Section Layout -->
+    <div class="project-item reverse">
+        <!-- Left Half: Contact Information -->
+        <div class="">
+            <h2>Contact</h2>
+            <p>mostafabusiness61104@gmail.com</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/mostafaahmedma" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="email-check">I check my email regularly. Please feel free to reach out and I will get back to you very soon!</p>
+        </div>
+        
+        <!-- Right Half: Contact Form -->
+        <div class="project-text">
+            <div class="contact-right">
+                <form id="contact-form" onsubmit="sendEmail(event)">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="from_name" required>
+                
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="from_email" required>
+                
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                
+                    <button type="submit">Send</button>
+                    <p id="form-status" style="display: none;">Your message has been sent!</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>  
+
+    <!-- Footer Section -->
+    <section id="footer" class="contact">
+        <a href="https://github.com/flaminghotcheetos69" target="_blank">
+            <i class="fab fa-github fa-3x"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mostafaahmedma" target="_blank">
+            <i class="fab fa-linkedin fa-3x"></i>
+        </a>
     </section>
 
     <script>
+
+function sendEmail(event) {
+    event.preventDefault();  // Prevent form submission from reloading the page
+
+    // Send form data using EmailJS
+    emailjs.sendForm('service_vx0rqx1', 'template_9e2ihoi', '#contact-form')
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showNotification('Your message has been sent!', false);
+        }, function(error) {
+            console.log('FAILED...', error);
+            showNotification('Failed to send the message. Please try again later.', true);
+        });
+
+    // Reset the form after sending
+    document.getElementById('contact-form').reset();
+}
+
+// Function to show the notification
+function showNotification(message, isError) {
+    const notificationBar = document.getElementById('notification-bar');
+    notificationBar.textContent = message;
+    
+    if (isError) {
+        notificationBar.classList.add('error');
+    } else {
+        notificationBar.classList.remove('error');
+    }
+
+    // Add the 'show' class to slide the notification in
+    notificationBar.classList.add('show');
+
+    // Remove the notification after 3 seconds
+    setTimeout(() => {
+        notificationBar.classList.remove('show');
+    }, 3000);
+}
+
         function updateActiveLink() {
     const sections = document.querySelectorAll('section'); // Find all sections
     const navLinks = document.querySelectorAll('nav a');   // Find all nav links
@@ -150,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(type, isDeleting ? erasingSpeed : typingSpeed);
         }
-
+        
         document.addEventListener("DOMContentLoaded", () => {
             type();
         });
